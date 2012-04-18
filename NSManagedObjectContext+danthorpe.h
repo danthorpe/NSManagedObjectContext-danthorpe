@@ -73,4 +73,10 @@
                   andFunction:(NSString *)function;
 
 
+#pragma mark - Changes
+
+- (NSSet *)registeredObjectsOfEntityName:(NSString *)entityName 
+                             withPredicate:(NSPredicate *)predicate;
+
+
 @end

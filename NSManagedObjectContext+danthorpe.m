@@ -193,4 +193,29 @@
 }
 
 
+#pragma mark - Changes
+
+- (NSSet *)registeredObjectsOfEntityName:(NSString *)entityName 
+                             withPredicate:(NSPredicate *)predicate {
+    // Create a predicate for the entity name
+    NSPredicate *entityNamePredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [entityName isEqualToString:NSStringFromClass([evaluatedObject class])];
+    }]; 
+    
+    // Define the filter predicate
+    NSPredicate *filter = nil;
+    
+    if (predicate) {
+        // Create a filter predicate
+        filter = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:entityNamePredicate, predicate, nil]];        
+    } else {
+        filter = entityNamePredicate;
+    }
+    
+    // Filter the registered objects
+    NSSet *filtered = [[self registeredObjects] filteredSetUsingPredicate:filter];
+    
+    return filtered;
+}
+
 @end
