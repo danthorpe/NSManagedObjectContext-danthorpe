@@ -129,6 +129,33 @@
 	return [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicate:nil];
 }
 
+- (id)firstObjectForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicate:(NSPredicate *)predicate {
+    return [[self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicate:predicate] objectAtIndex:0];
+}
+
+- (id)firstObjectArrayForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format arguments:(va_list)arguments {
+    return [[self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments] objectAtIndex:0];
+}
+
+- (id)firstObjectArrayForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format, ... {
+	va_list arguments;
+	va_start(arguments, format);
+	NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments];
+	va_end(arguments);
+	
+	return [results objectAtIndex:0];
+}
+
+- (id)firstObjectArrayForEntityName:(NSString *)entityName withPredicateFormat:(NSString *)format, ... {
+	va_list arguments;
+	va_start(arguments, format);
+	NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:nil withPredicateFormat:format arguments:arguments];
+	va_end(arguments);
+    
+    return [results objectAtIndex:0];
+}
+
+
 #pragma mark -
 
 - (id)fetchValueForEntityName:(NSString *)entityName usingAttribute:(NSString *)attributeName andFunction:(NSString *)function withPredicate:(NSPredicate *)predicate {

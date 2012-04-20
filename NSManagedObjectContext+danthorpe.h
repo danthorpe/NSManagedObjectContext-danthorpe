@@ -49,6 +49,22 @@
 - (NSArray *)fetchObjectArrayForEntityName:(NSString *)entityName 
                       usingSortDescriptors:(NSArray *)sortDescriptors;
 
+- (id)firstObjectForEntityName:(NSString *)entityName 
+          usingSortDescriptors:(NSArray *)sortDescriptors 
+                 withPredicate:(NSPredicate *)predicate;
+
+- (id)firstObjectArrayForEntityName:(NSString *)entityName 
+               usingSortDescriptors:(NSArray *)sortDescriptors 
+                withPredicateFormat:(NSString *)format 
+                          arguments:(va_list)arguments;
+
+- (id)firstObjectArrayForEntityName:(NSString *)entityName 
+               usingSortDescriptors:(NSArray *)sortDescriptors 
+                withPredicateFormat:(NSString *)format, ...;
+
+- (id)firstObjectArrayForEntityName:(NSString *)entityName 
+                withPredicateFormat:(NSString *)format, ...;
+
 
 #pragma mark - Value
 
