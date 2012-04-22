@@ -130,11 +130,21 @@
 }
 
 - (id)firstObjectForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicate:(NSPredicate *)predicate {
-    return [[self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicate:predicate] objectAtIndex:0];
+    NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicate:predicate];
+    if ([results count] > 0) {
+        return [results objectAtIndex:0];
+    } else {
+        return nil;
+    }
 }
 
 - (id)firstObjectArrayForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format arguments:(va_list)arguments {
-    return [[self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments] objectAtIndex:0];
+    NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments];
+    if ([results count] > 0) {
+        return [results objectAtIndex:0];
+    } else {
+        return nil;
+    }
 }
 
 - (id)firstObjectArrayForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format, ... {
@@ -143,7 +153,11 @@
 	NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments];
 	va_end(arguments);
 	
-	return [results objectAtIndex:0];
+    if ([results count] > 0) {
+        return [results objectAtIndex:0];
+    } else {
+        return nil;
+    }        
 }
 
 - (id)firstObjectArrayForEntityName:(NSString *)entityName withPredicateFormat:(NSString *)format, ... {
@@ -152,7 +166,11 @@
 	NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:nil withPredicateFormat:format arguments:arguments];
 	va_end(arguments);
     
-    return [results objectAtIndex:0];
+    if ([results count] > 0) {
+        return [results objectAtIndex:0];
+    } else {
+        return nil;
+    }        
 }
 
 
