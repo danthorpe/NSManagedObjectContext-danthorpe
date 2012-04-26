@@ -138,7 +138,7 @@
     }
 }
 
-- (id)firstObjectArrayForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format arguments:(va_list)arguments {
+- (id)firstObjectForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format arguments:(va_list)arguments {
     NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments];
     if ([results count] > 0) {
         return [results objectAtIndex:0];
@@ -147,7 +147,7 @@
     }
 }
 
-- (id)firstObjectArrayForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format, ... {
+- (id)firstObjectForEntityName:(NSString *)entityName usingSortDescriptors:(NSArray *)sortDescriptors withPredicateFormat:(NSString *)format, ... {
 	va_list arguments;
 	va_start(arguments, format);
 	NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:sortDescriptors withPredicateFormat:format arguments:arguments];
@@ -160,7 +160,7 @@
     }        
 }
 
-- (id)firstObjectArrayForEntityName:(NSString *)entityName withPredicateFormat:(NSString *)format, ... {
+- (id)firstObjectForEntityName:(NSString *)entityName withPredicateFormat:(NSString *)format, ... {
 	va_list arguments;
 	va_start(arguments, format);
 	NSArray *results = [self fetchObjectArrayForEntityName:entityName usingSortDescriptors:nil withPredicateFormat:format arguments:arguments];
